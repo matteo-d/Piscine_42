@@ -18,11 +18,13 @@
                return dest;
            }
 
-void	main()
+int	main()
 {
 	char	src[] = "ex01";
-	char	dest[6];
+	char	dest[];
 
-	ft_strncpy(dest, src, 123);
+	ft_strncpy(dest, src, 3);
 	printf("%s\n", dest);
+
+	return(0);
 }

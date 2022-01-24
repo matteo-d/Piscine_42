@@ -1,35 +1,58 @@
 #include<stdio.h>
-#include<unistd.h>
 
-char	*ft_lowcase(char *str)	
+size_t strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-        int     i;
-        i = 0;
-        while(str[i] != '\0')
+    int offset;
+
+    /* duplicate the string up to dstsize */
+    offset = 0;
+        /* guard against silly dstsize values */
+    if( dstsize > 0 )
+    {
+        while( *(src+offset) != '\0' )
         {
-		if ((str[i] > 64) && (str[i] < 91))
-		       	
-                {
-                       str[i] = str[i] + 32;
-                }
-        i++ ;
+            /* bail if dstsize is met */
+            if( offset==dstsize )
+            {
+                offset--;
+                break;
+            }
+
+            /* duplicate the string */
+            *(dst+offset) = *(src+offset);
+            offset++;
         }
-        return(str);
+    }
+    /* always remember to cap a created string! */
+    *(dst+offset) = '\0';
+    
+    /* return the string length of src */
+    while( *(src+offset) != '\0' )
+        offset++;
+
+    return(offset);
 }
-
-
-int     main()
+void test(int size)
 {
-        char    str[] = "aDa8q*DaD";
-	
-        printf("Uppercase to Lowercase\n ");
+    char string[] = "Hello there, Venus";
+    char buffer[19];
+    int r;
 
-	printf("Before : %s\n", str);
+    r = strlcpy(buffer,string,size);
 
-	*str = *ft_lowcase(str);
-
-	printf("After : %s \n", str);
-        
-        return(0);
+    printf("Copied '%s' into '%s', length %d\n",
+            string,
+            buffer,
+            r
+          );
 }
 
+int main()
+{
+    test(19);
+    test(10);
+    test(1);
+    test(0);
+
+    return(0);
+}

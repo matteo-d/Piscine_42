@@ -14,10 +14,10 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-void	main ()
+int		main ()
 {
 	char	src[] = "ex00";
-	char	dest[3];
+	char	dest[0];
 
 	ft_strcpy(dest, src);
 
