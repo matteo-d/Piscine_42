@@ -25,10 +25,10 @@ int 	ft_strcmp(char *s1, char *s2)
 
 int	main ()
 {
-	char	hello[] = "heppoooooooooooo";
-	char bonjour[] = "heppo";
+	char	dest[] = "heppo";
+	char  source[] = "heppo";
 	int	result;	
-	result = ft_strcmp(hello, bonjour);
+	result = ft_strcmp(dest, source);
 	printf("response : %d\n", result);
 	return(0);
 }
